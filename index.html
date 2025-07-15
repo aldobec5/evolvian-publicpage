@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    let isOpen = false;
+
+    // Crear el botón con imagen
+    const button = document.createElement("button");
+    button.style.position = "fixed";
+    button.style.bottom = "20px";
+    button.style.right = "20px";
+    button.style.zIndex = "9999";
+    button.style.padding = "0";
+    button.style.border = "none";
+    button.style.background = "transparent";
+    button.style.cursor = "pointer";
+
+    const img = document.createElement("img");
+    img.src = "/chat_logo.svg"; // Asegúrate de que la ruta sea correcta
+    img.alt = "Chat with Evolvian";
+    img.style.width = "64px"; // ajusta el tamaño según tu diseño
+    img.style.height = "64px";
+    img.style.borderRadius = "50%";
+    img.style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)";
+    button.appendChild(img);
+
+    // Crear el iframe del widget
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://evolvianai.com/widget?public_client_id=evolvian-internal";
+    iframe.style.position = "fixed";
+    iframe.style.bottom = "100px";
+    iframe.style.right = "20px";
+    iframe.style.width = "360px";
+    iframe.style.height = "520px";
+    iframe.style.border = "2px solid #4a90e2";
+    iframe.style.borderRadius = "16px";
+    iframe.style.backgroundColor = "#ededed";
+    iframe.style.boxShadow = "0 6px 24px rgba(0,0,0,0.15)";
+    iframe.style.zIndex = "9998";
+    iframe.style.display = "none";
+    iframe.setAttribute("title", "Evolvian AI Widget");
+    iframe.setAttribute("allow", "clipboard-write; microphone");
+
+    // Toggle al hacer click
+    button.addEventListener("click", function () {
+      isOpen = !isOpen;
+      iframe.style.display = isOpen ? "block" : "none";
+    });
+
+    // Agregar elementos al DOM
+    document.body.appendChild(button);
+    document.body.appendChild(iframe);
+  });
+</script>
+
+
+
+
+
+</html>
