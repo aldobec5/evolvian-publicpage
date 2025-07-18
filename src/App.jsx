@@ -31,7 +31,7 @@ export default function App() {
       }}
     >
       <a
-        href="https://www.evolvianai.com"
+        href="https://www.evolvianai.net"
         target="_blank"
         rel="noopener noreferrer"
         className="login-button"
@@ -39,7 +39,7 @@ export default function App() {
         Log in
       </a>
       <a
-        href="https://www.evolvianai.com/register"
+        href="https://www.evolvianai.net/register"
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -93,7 +93,7 @@ export default function App() {
           <li>✅ Evolvian branding</li>
         </ul>
       </div>
-      <a href="https://www.evolvianai.com" class="plan-cta yellow">Start for Free</a>
+      <a href="https://www.evolvianai.net" class="plan-cta yellow">Start for Free</a>
     </div>
 
     <div class="plan-card">
