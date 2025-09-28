@@ -1,4 +1,4 @@
-// src/embed-floating.js
+// public/embed-floating.js
 (function () {
   // 🚫 Evitar ejecución dentro de iframes o del propio widget
   const isIframe = window.self !== window.top;
@@ -21,6 +21,9 @@
   }
 
   console.log("✅ Evolvian Floating cargado con clientId:", clientId);
+
+  // 🟦 Determinar origen dinámico (el mismo desde donde sirves el script)
+  const baseOrigin = window.location.origin;
 
   // 🟦 Botón flotante
   let isOpen = false;
@@ -46,7 +49,7 @@
 
   // 🔹 Logo Evolvian (estado cerrado)
   const logo = document.createElement("img");
-  logo.src = "/logo-evolvian.svg"; // asegúrate de que esté en /public/
+  logo.src = "/logo-evolvian.svg";
   logo.alt = "Evolvian Logo";
   Object.assign(logo.style, {
     width: "100%",
@@ -74,23 +77,19 @@
 
   // 🟦 Iframe oculto (ventana flotante, tamaño fijo)
   const iframe = document.createElement("iframe");
-  iframe.src = `https://evolvianai.com/widget.html?public_client_id=${clientId}`;
-
-
+  iframe.src = `${baseOrigin}/widget.html?public_client_id=${clientId}`;
   Object.assign(iframe.style, {
     position: "fixed",
-    bottom: "90px",    // 🔹 deja espacio sobre el botón
+    bottom: "90px",
     right: "24px",
-    width: "360px",    // 🔹 tamaño fijo
-    height: "520px",   // 🔹 tamaño fijo
+    width: "360px",
+    height: "520px",
     border: "none",
     borderRadius: "12px",
     display: "none",
     zIndex: "9999",
     background: "white",
     boxShadow: "0 0 12px rgba(0,0,0,0.2)",
-
-    // Animación
     transition: "transform 0.3s ease, opacity 0.3s ease",
     transform: "translateY(20px)",
     opacity: "0",
@@ -113,7 +112,6 @@
       }, 300);
     }
 
-    // Cambiar entre logo y close
     button.innerHTML = "";
     button.appendChild(isOpen ? closeIcon : logo);
   });
