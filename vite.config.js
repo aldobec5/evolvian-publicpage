@@ -6,7 +6,6 @@ export default defineConfig({
 
   base: "/", // 👈 asegura rutas absolutas
 
-  base: "/", // 👈 asegura que en producción se resuelva desde la raíz (evolvianai.com/)
 
   plugins: [react()],
   resolve: {
