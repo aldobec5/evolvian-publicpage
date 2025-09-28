@@ -15,8 +15,7 @@ export default defineConfig({
     assetsDir: "assets",
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),           // página principal
-        widget: resolve(__dirname, "public/widget.html"), // ✅ apunta al public
+        main: resolve(__dirname, "index.html"), // solo tu entry principal
       },
     },
   },
