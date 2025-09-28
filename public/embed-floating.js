@@ -74,7 +74,9 @@
 
   // 🟦 Iframe oculto (ventana flotante, tamaño fijo)
   const iframe = document.createElement("iframe");
-  iframe.src = `http://evolvianai.net/widget.html?public_client_id=${clientId}`;
+  iframe.src = `https://evolvianai.com/widget.html?public_client_id=${clientId}`;
+
+
   Object.assign(iframe.style, {
     position: "fixed",
     bottom: "90px",    // 🔹 deja espacio sobre el botón
