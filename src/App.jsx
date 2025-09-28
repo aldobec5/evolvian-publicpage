@@ -1,6 +1,5 @@
 import React from "react";
 import * as Label from "@radix-ui/react-label";
-import "./styles.css";
 
 export default function App() {
   return (
