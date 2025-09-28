@@ -10,34 +10,14 @@
   <body>
     <div id="root"></div>
 
-    <script type="module" src="/src/main.jsx"></script>
-
-
-
-<!-- Floating script -->
- <script
-      type="module"
-      src="http://evolvianai.net/embed-floating.js"
-      data-public-client-id="evolvian-internal"
-    ></script>
-
-
-  </body>
-
-
-
-
-
-
     <!-- React app bundle (Vite reemplaza en build) -->
-    <script type="module" src="/main.jsx"></script>
+    <script type="module" src="./src/main.jsx"></script>
 
-    <!-- Floating script (desde el mismo dominio, evita Mixed Content) -->
+    <!-- Floating script (servido desde el mismo dominio en producción) -->
     <script
       type="module"
       src="/embed-floating.js"
       data-public-client-id="evolvian-internal"
     ></script>
   </body>
-
 </html>
