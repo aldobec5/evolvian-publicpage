@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  base: "./", // 👈 relativo, para que los assets carguen bien desde Supabase
+  base: "./", // relativo para que los assets funcionen bien en Render/Supabase
   plugins: [
     react(),
     // Copia _headers desde public/ al dist final
@@ -28,8 +28,7 @@ export default defineConfig({
     assetsDir: "assets",
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),    // Admin
-        widget: resolve(__dirname, "widget.html"), // Widget iframe
+        main: resolve(__dirname, "index.html"), // ✅ Solo la página pública
       },
     },
   },
