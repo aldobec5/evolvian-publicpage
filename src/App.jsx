@@ -90,6 +90,7 @@ export default function App() {
           <li>✅ 100 messages / month</li>
           <li>✅ 1 document</li>
           <li>✅ Basic dashboard</li>
+          <li>✅ Evolvian Chat Support</li>
         </ul>
       </div>
       <a href="https://www.evolvianai.net" className="plan-cta yellow">
@@ -106,9 +107,9 @@ export default function App() {
         </div>
         <p className="plan-description">Perfect for small businesses.</p>
         <ul>
-          <li>✅ 1,000 messages / month</li>
+          <li>✅ enjoy 1,000 monthly messages (soon 500)</li>
           <li>✅ 1 document</li>
-          <li>✅ Email support</li>
+          <li>✅ Evolvian Chat Support</li>
         </ul>
       </div>
       <a href="#contact" className="plan-cta">
@@ -130,7 +131,7 @@ export default function App() {
           <li>✅ Custom Prompt</li>
          {/* <li>✅ Custom branding (logo, colors, name)</li>
           <li>✅ Remove “Powered by Evolvian”</li>*/}
-          <li>✅ Priority support</li>
+         <li>✅ Evolvian Chat Support</li>
         </ul>
       </div>
       <a href="#contact" className="plan-cta">
