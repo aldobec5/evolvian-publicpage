@@ -93,7 +93,7 @@ export default function App() {
           <li>✅ Evolvian Chat Support</li>
         </ul>
       </div>
-      <a href="https://www.evolvianai.net" className="plan-cta yellow">
+      <a href="https://www.evolvianai.net/register" className="plan-cta yellow">
         Start for Free
       </a>
     </div>
@@ -113,7 +113,7 @@ export default function App() {
         </ul>
       </div>
       <a href="#contact" className="plan-cta">
-        Get Starter
+        Send us an email 
       </a>
     </div>
 
@@ -135,7 +135,7 @@ export default function App() {
         </ul>
       </div>
       <a href="#contact" className="plan-cta">
-        Get Premium
+        Send us an email
       </a>
     </div>
 
@@ -157,7 +157,7 @@ export default function App() {
         </ul>
       </div>
       <a href="#contact" className="plan-cta">
-        Contact Sales
+        Send us an email
       </a>
     </div>
 
@@ -192,137 +192,136 @@ export default function App() {
       </section>
 
       <section className="contact-section" id="contact">
-        <div className="contact-wrapper">
-          <div className="contact-left">
-            <h2>Contact Us</h2>
-            <form
-              className="form-grid"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const subject = document.getElementById("subject").value;
-                const plan = document.getElementById("plan").value;
-                const usage = document.getElementById("usage").value;
+  <div className="contact-wrapper">
+    <div className="contact-left">
+      <h2>Contact Us</h2>
+      <form
+        className="form-grid"
+        onSubmit={(e) => {
+          e.preventDefault();
 
-                const mailtoLink = `mailto:support@evolvianai.com?subject=${encodeURIComponent(
-                  subject
-                )}&body=${encodeURIComponent(
-                  `Name: ${name}\nEmail: ${email}\nInterested Plan: ${plan}\n\nWhat would you use Evolvian for:\n${usage}`
-                )}`;
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const subject = document.getElementById("subject").value.trim();
+          const plan = document.getElementById("plan").value;
+          const usage = document.getElementById("usage").value.trim();
 
-                window.location.href = mailtoLink;
-              }}
-            >
-              <div className="form-group">
-                <Label.Root htmlFor="name">Name</Label.Root>
-                <input id="name" type="text" placeholder="Your name" required />
-              </div>
+          const mailBody = `Name: ${name}\nEmail: ${email}\nInterested Plan: ${plan}\n\nWhat would you use Evolvian for:\n${usage}`;
+          const encodedSubject = encodeURIComponent(subject || "Evolvian Inquiry");
+          const encodedBody = encodeURIComponent(mailBody);
 
-              <div className="form-group">
-                <Label.Root htmlFor="email">Email</Label.Root>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  required
-                />
-              </div>
+          // 🟢 URLs de prioridad
+          const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=support@evolvianai.com&su=${encodedSubject}&body=${encodedBody}`;
+          const outlookUrl = `https://outlook.live.com/mail/deeplink/compose?to=support@evolvianai.com&subject=${encodedSubject}&body=${encodedBody}`;
+          const mailtoUrl = `mailto:support@evolvianai.com?subject=${encodedSubject}&body=${encodedBody}`;
 
-              <div className="form-group full-width">
-                <Label.Root htmlFor="subject">Subject</Label.Root>
-                <input
-                  id="subject"
-                  type="text"
-                  placeholder="What's your message about?"
-                  required
-                />
-              </div>
+          // 🧭 Prioridad: Gmail → Outlook → Mailto
+          const gmailTab = window.open(gmailUrl, "_blank");
 
-              <div className="form-group full-width">
-                <Label.Root htmlFor="plan">
-                  What plan are you interested in?
-                </Label.Root>
-                <select
-                  id="plan"
-                  required
-                  defaultValue=""
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    border: "1px solid #274472",
-                    borderRadius: "6px",
-                    backgroundColor: "#fff",
-                    color: "#333",
-                    fontSize: "16px",
-                    boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-                    transition: "border-color 0.3s, box-shadow 0.3s",
-                  }}
-                >
-                  <option value="" disabled>
-                    Select a plan
-                  </option>
-                  <option value="Starter">Starter</option>
-                  <option value="Premium">Premium</option>
-                  <option value="White Label">White Label</option>
-                </select>
-              </div>
+          setTimeout(() => {
+            if (!gmailTab || gmailTab.closed || typeof gmailTab.closed === "undefined") {
+              const outlookTab = window.open(outlookUrl, "_blank");
 
-              <div className="form-group full-width">
-                <Label.Root htmlFor="usage">
-                  What would you use Evolvian for?
-                </Label.Root>
-                <textarea
-                  id="usage"
-                  rows="5"
-                  placeholder="Tell us a bit about your use case..."
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    border: "1px solid #274472",
-                    borderRadius: "6px",
-                    color: "#333",
-                    fontSize: "16px",
-                    backgroundColor: "#fff",
-                    boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-                    resize: "vertical",
-                  }}
-                />
-              </div>
-
-              <div className="form-group full-width align-right">
-                <button type="submit" className="submit-btn">
-                  Send Message
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div className="contact-right">
-            <p>
-              If you need more information about plans or want to start with a
-              paid plan, feel free to send us your details using the form.
-            </p>
-            <p>
-              To learn more about Evolvian, open the chat in the bottom right
-              corner and ask our assistant. They can help you find the best plan
-              for your needs.
-            </p>
-            <button
-              className="chat-btn"
-              onClick={() => {
-                const iframe = document.querySelector(
-                  "iframe[title='Evolvian AI Widget']"
-                );
-                if (iframe) iframe.style.display = "block";
-              }}
-            >
-              Start a chat with Evolvian
-            </button>
-          </div>
+              setTimeout(() => {
+                if (!outlookTab || outlookTab.closed || typeof outlookTab.closed === "undefined") {
+                  window.location.href = mailtoUrl;
+                }
+              }, 800);
+            }
+          }, 800);
+        }}
+      >
+        <div className="form-group">
+          <Label.Root htmlFor="name">Name</Label.Root>
+          <input id="name" type="text" placeholder="Your name" required />
         </div>
-      </section>
+
+        <div className="form-group">
+          <Label.Root htmlFor="email">Email</Label.Root>
+          <input id="email" type="email" placeholder="you@example.com" required />
+        </div>
+
+        <div className="form-group full-width">
+          <Label.Root htmlFor="subject">Subject</Label.Root>
+          <input
+            id="subject"
+            type="text"
+            placeholder="What's your message about?"
+            required
+          />
+        </div>
+
+        <div className="form-group full-width">
+          <Label.Root htmlFor="plan">What plan are you interested in?</Label.Root>
+          <select
+            id="plan"
+            required
+            defaultValue=""
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #274472",
+              borderRadius: "6px",
+              backgroundColor: "#fff",
+              color: "#333",
+              fontSize: "16px",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+              transition: "border-color 0.3s, box-shadow 0.3s",
+            }}
+          >
+            <option value="" disabled>
+              Select a plan
+            </option>
+            <option value="Starter">Starter</option>
+            <option value="Premium">Premium</option>
+            <option value="White Label">White Label</option>
+          </select>
+        </div>
+
+        <div className="form-group full-width">
+          <Label.Root htmlFor="usage">What would you use Evolvian for?</Label.Root>
+          <textarea
+            id="usage"
+            rows="5"
+            placeholder="Tell us a bit about your use case..."
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #274472",
+              borderRadius: "6px",
+              color: "#333",
+              fontSize: "16px",
+              backgroundColor: "#fff",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+              resize: "vertical",
+            }}
+          />
+        </div>
+
+        <div className="form-group full-width align-right">
+          <button type="submit" className="submit-btn">
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div className="contact-right">
+      <p>
+        If you need more information about plans or want to start with a paid
+        plan, feel free to send us your details using the form.
+      </p>
+      <p>
+        To learn more about Evolvian, open the chat in the bottom right corner
+        and ask our assistant. Welcome can help you find the best plan for your
+        needs.
+      </p>
+      
+    </div>
+  </div>
+</section>
+
 
       <section
         id="about-us"
@@ -388,74 +387,104 @@ export default function App() {
       </section>
 
       <footer className="footer">
-        <div
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "0 auto",
+      padding: "2rem",
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      gap: "2rem",
+      color: "#1b2a41",
+    }}
+  >
+    {/* Location */}
+    <div style={{ flex: "1 1 200px" }}>
+      <h4
+        style={{
+          fontSize: "1.2rem",
+          marginBottom: "1rem",
+          color: "#274472",
+        }}
+      >
+        Location
+      </h4>
+      <p style={{ lineHeight: "1.6", color: "#333" }}>
+        1001 S Main St Ste 500
+        <br />
+        Kalispell, MT 59901
+      </p>
+    </div>
+
+    {/* Contact */}
+    <div style={{ flex: "1 1 200px" }}>
+      <h4
+        style={{
+          fontSize: "1.2rem",
+          marginBottom: "1rem",
+          color: "#274472",
+        }}
+      >
+        Contact
+      </h4>
+      <p style={{ lineHeight: "1.6", color: "#333" }}>
+        support@evolvianai.com
+        <br />
+        +1 (760) 589-5148
+      </p>
+    </div>
+
+    {/* Legal */}
+    <div style={{ flex: "1 1 200px" }}>
+      <h4
+        style={{
+          fontSize: "1.2rem",
+          marginBottom: "1rem",
+          color: "#274472",
+        }}
+      >
+        Legal
+      </h4>
+      <p style={{ lineHeight: "1.6" }}>
+        <a
+          href="/terms"
           style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "2rem",
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            gap: "2rem",
             color: "#1b2a41",
+            textDecoration: "none",
+            display: "block",
+            marginBottom: "0.5rem",
           }}
         >
-          <div style={{ flex: "1 1 200px" }}>
-            <h4
-              style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "#274472" }}
-            >
-              Location
-            </h4>
-            <p style={{ lineHeight: "1.6", color: "#333" }}>
-              1001 S Main St Ste 500
-              <br />
-              Kalispell, MT 59901
-            </p>
-          </div>
-
-          <div style={{ flex: "1 1 200px" }}>
-            <h4
-              style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "#274472" }}
-            >
-              Contact
-            </h4>
-            <p style={{ lineHeight: "1.6", color: "#333" }}>
-              support@evolvianai.com
-              <br />
-              +1 (760) 589-5148
-            </p>
-          </div>
-
-          <div style={{ flex: "1 1 200px" }}>
-            <h4
-              style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "#274472" }}
-            >
-              Legal
-            </h4>
-            <p>
-              <a
-                href="https://www.evolvianai.com/terms"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "#1b2a41", textDecoration: "none" }}
-              >
-                Terms & Conditions
-              </a>
-            </p>
-          </div>
-        </div>
-
-        <div
+          Terms & Conditions
+        </a>
+        <a
+          href="/privacy"
           style={{
-            textAlign: "center",
-            marginTop: "2rem",
-            fontSize: "0.9rem",
-            color: "#666",
+            color: "#1b2a41",
+            textDecoration: "none",
+            display: "block",
           }}
         >
-          © {new Date().getFullYear()} Evolvian AI. All rights reserved.
-        </div>
-      </footer>
+          Privacy Policy
+        </a>
+      </p>
+    </div>
+  </div>
+
+  {/* Footer bottom text */}
+  <div
+    style={{
+      textAlign: "center",
+      marginTop: "2rem",
+      fontSize: "0.9rem",
+      color: "#666",
+    }}
+  >
+    © {new Date().getFullYear()} Evolvian AI. All rights reserved.
+  </div>
+</footer>
+
     </>
   );
 }
