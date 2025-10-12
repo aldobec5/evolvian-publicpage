@@ -8,18 +8,13 @@
 
     <!-- 🔑 CSP necesario para que el widget funcione -->
     <meta
-  http-equiv="Content-Security-Policy"
-  content="
-    default-src * data: blob:;
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com;
-    img-src * data:;
-  "
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
     />
-
     <meta name="facebook-domain-verification" content="l138dc5dn99q9r166s2q0qida02gcn" />
 
 
-<!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -62,4 +57,3 @@ src="https://www.facebook.com/tr?id=805104092211918&ev=PageView&noscript=1"
 
   </body>
 </html>
-
