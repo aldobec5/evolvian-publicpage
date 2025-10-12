@@ -565,3 +565,7 @@ export default function App() {
     © {new Date().getFullYear()} Evolvian AI. All rights reserved.
   </div>
 </footer>
+</>
+);
+}
+
